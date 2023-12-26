@@ -1,0 +1,26 @@
+---
+stages:
+  - test
+  - docs
+
+.setup-python:
+  before_script:
+    - python -m pip install nox
+    - python -m pip install poetry
+  script:
+    - nox -rs tests
+
+run-tests-py310:
+  extends: .setup-python
+  stage: test
+  image: python:3.10-slim-buster
+
+run-tests-py311:
+  extends: .setup-python
+  stage: test
+  image: python:3.11-slim-buster
+
+run-tests-py312:
+  extends: .setup-python
+  stage: test
+  image: python:3.12-slim-buster
