@@ -9,6 +9,7 @@ homepage = "https://gitlab.com/pn320/wacc"
 [tool.poetry.dependencies]
 python = "^3.10"
 ruff = "^0.1.9"
+structlog = "^23.2.0"
 
 
 [tool.poetry.group.dev.dependencies]

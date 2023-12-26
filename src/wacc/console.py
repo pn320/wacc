@@ -1,6 +1,10 @@
 # entry point for the program
 import sys
 
+import structlog
+
+logger = structlog.get_logger(__name__)
+
 
 def print_help() -> None:
     print(
@@ -29,8 +33,10 @@ def main() -> None:
     prints the help message.
     """
     args: list[str] = sys.argv[1:]
+    logger.info("parsing command line arguments for wacc compiler")
     match args:
         case []:
+            logger.info("no arguments given, printing help message")
             print_help()
         case _:
             parse_args(args)
