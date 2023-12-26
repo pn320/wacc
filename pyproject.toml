@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "wacc"
+version = "0.1.0"
+license = "MIT"
+description = "A simple compiler for a fictional language with static typing and some basic constructs"
+authors = ["Prakhar Nagpal <prakhar.nagpal03@gmail.com>"]
+homepage = "https://gitlab.com/pn320/wacc"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+ruff = "^0.1.9"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+coverage = {extras = ["toml"], version = "^7.3.4"}
+pytest-cov = "^4.1.0"
+nox = "^2023.4.22"
+mypy = "^1.8.0"
+sphinx = "^7.2.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+wacc = "wacc.console:main"
+
+[tool.coverage.paths]
+source = ["src"]
+
+[tool.coverage.run]
+branch = true
+source = ["wacc"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 85
