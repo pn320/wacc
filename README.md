@@ -1,5 +1,6 @@
 [![Tests](https://github.com/pn320/wacc/workflows/Tests/badge.svg)](https://github.com/pn320/wacc/actions?workflow=Tests)
 [![Codecov](https://codecov.io/gh/pn320/wacc/graph/badge.svg?token=NP7IZO8842)](https://codecov.io/gh/pn320/wacc)
+[![Docs](https://readthedocs.org/projects/wacc/badge/?version=latest)](https://wacc.readthedocs.io/en/latest/?badge=latest)
 
 ## Wacc compiler
 
