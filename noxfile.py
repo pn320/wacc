@@ -34,3 +34,11 @@ def docs(session) -> None:
     session.install("sphinx")
     session.install("furo")
     session.run("sphinx-build", "docs", "docs/_build")
+
+
+@nox.session(python="3.11")
+def coverage(session) -> None:
+    """Upload coverage data."""
+    session.install("coverage[toml]", "codecov")
+    session.run("coverage", "xml", "--fail-under=0")
+    session.run("codecov", *session.posargs)

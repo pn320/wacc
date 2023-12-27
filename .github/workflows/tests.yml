@@ -15,4 +15,4 @@ jobs:
         architecture: x64
     - run: pip install nox
     - run: pip install poetry
-    - run: nox -rs tests
+    - run: nox -rs tests --python ${{ matrix.python-version }}

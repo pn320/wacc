@@ -1,17 +1,11 @@
 # entry point for the program
-import sys
 
+import sys
 import structlog
+import argparse
+from wacc import __version__
 
 logger = structlog.get_logger(__name__)
-
-
-def print_help() -> None:
-    print(
-        "Usage: wacc [--source-file=<path>] [--output-file=<path>]"
-        " [-v | --version] [--help]"
-    )
-    exit(0)
 
 
 def get_file_name_from_path(path: str) -> str:
@@ -20,23 +14,33 @@ def get_file_name_from_path(path: str) -> str:
     return path.strip().split("/")[-1]
 
 
-def parse_args(args: list[str]) -> None:
-    """Parses the command line arguments and runs the compiler
-    with the appropriate flags as specified by the user."""
-    ...
+def parse_args(args: list[str]) -> argparse.ArgumentParser:
+    """Creates the parser for the command line arguments."""
+    parser = argparse.ArgumentParser(prog="wacc")
+    parser.add_argument(
+        "--version", "-v", action="version", version="%(prog)s " + __version__
+    )
+    parser.add_argument(
+        "source", metavar="source", type=str, help="the source file to compile"
+    )
+    parser.add_argument("--output-file", metavar="", type=str, help="")
+    parser.add_argument("-o1", action="store_true", help="enable basic optimisations")
+    parser.add_argument(
+        "-o2", action="store_true", help="enable advanced optimisations"
+    )
+    parser.add_argument(
+        "--ast-only",
+        action="store_true",
+        help="only output the ast of the program in the most readable format possible",
+    )
+    return parser.parse_args(args)
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> None:
     """
     The entry point for the program. Captures the command line arguments
-    and runs the compiler if the correct arguments are given else
-    prints the help message.
+    and runs the compiler with the supplied arguments.
     """
-    args: list[str] = sys.argv[1:]
-    logger.info("parsing command line arguments for wacc compiler")
-    match args:
-        case []:
-            logger.info("no arguments given, printing help message")
-            print_help()
-        case _:
-            parse_args(args)
+    # this is to ensure test args are not passed to the parser
+    # unless they are explicitly passed
+    _ = parse_args(sys.argv[1:] if argv is None else argv)
