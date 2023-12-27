@@ -23,7 +23,12 @@ def parse_args(args: list[str]) -> argparse.ArgumentParser:
     parser.add_argument(
         "source", metavar="source", type=str, help="the source file to compile"
     )
-    parser.add_argument("--output-file", metavar="", type=str, help="")
+    parser.add_argument(
+        "--output-file",
+        metavar="",
+        type=str,
+        help="the output file for the compiled program",
+    )
     parser.add_argument("-o1", action="store_true", help="enable basic optimisations")
     parser.add_argument(
         "-o2", action="store_true", help="enable advanced optimisations"

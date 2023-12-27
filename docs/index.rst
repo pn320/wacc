@@ -13,10 +13,7 @@ run this command in your terminal:
 
 .. code-block:: console
 
-   $ git clone https://gitlab.com/pn320/wacc.git
-   $ cd wacc
-   $ pip install -e .
-   $ poetry run wacc --help
+   $ pip install -i https://test.pypi.org/simple/ wacc
 
 
 Usage
@@ -24,21 +21,26 @@ Usage
 
 Wacc's compiler comes with a command line interface. A quick overview of the most common functions is provided below.
 
-.. code-block:: console
+.. option:: source
 
-   $ wacc
+    The source file to compile
 
-.. option:: -l <language>, --language <language>
+.. option:: --output-file
 
-   The Wikipedia language edition,
-   as identified by its subdomain on
-   `wikipedia.org <https://www.wikipedia.org/>`_.
-   By default, the English Wikipedia is selected.
+    The output file for the compiled program
+
+.. option:: --o1
+
+    Enable basic optimisations for the compiler
+
+.. option:: --o2
+
+    Enable advanced optimisations for the compiler
 
 .. option:: --version
 
-   Display the version and exit.
+    Display the version and exit.
 
 .. option:: --help
 
-   Display a short usage message and exit.
+    Display a short usage message and exit.
