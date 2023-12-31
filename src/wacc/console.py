@@ -1,9 +1,11 @@
 # entry point for the program
 
+import pprint
 import sys
 import structlog
 import argparse
 from wacc import __version__
+from wacc.lexer import get_tokens_from_string
 
 logger = structlog.get_logger(__name__)
 
@@ -14,7 +16,7 @@ def get_file_name_from_path(path: str) -> str:
     return path.strip().split("/")[-1]
 
 
-def parse_args(args: list[str]) -> argparse.ArgumentParser:
+def parse_args(args: list[str]) -> argparse.Namespace:
     """Creates the parser for the command line arguments."""
     parser = argparse.ArgumentParser(prog="wacc")
     parser.add_argument(
@@ -48,4 +50,9 @@ def main(argv: list[str] | None = None) -> None:
     """
     # this is to ensure test args are not passed to the parser
     # unless they are explicitly passed
-    _ = parse_args(sys.argv[1:] if argv is None else argv)
+    options = parse_args(sys.argv[1:] if argv is None else argv)
+    with open(options.source) as f:
+        source = f.read()
+        tokens = get_tokens_from_string(source)
+
+        pprint.pprint(tokens)

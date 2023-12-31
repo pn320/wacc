@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wacc"
-version = "0.1.0"
+version = "0.1.0a1"
 license = "MIT"
 description = "A simple compiler for a fictional language with static typing and some basic constructs"
 authors = ["Prakhar Nagpal <prakhar.nagpal03@gmail.com>"]

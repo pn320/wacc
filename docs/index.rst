@@ -29,11 +29,11 @@ Wacc's compiler comes with a command line interface. A quick overview of the mos
 
     The output file for the compiled program
 
-.. option:: --o1
+.. option:: -o1
 
     Enable basic optimisations for the compiler
 
-.. option:: --o2
+.. option:: -o2
 
     Enable advanced optimisations for the compiler
 
